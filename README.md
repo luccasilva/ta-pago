@@ -15,5 +15,5 @@ Haja vista essa situação pensamos em desenvolver o Tá Pago! O Sistema vem com
 Será desenvolvido um client (front-end) e um servidor (back-end) para suportar a aplicação. As tecnologias utilizadas serão:
 
 - Cliente: Utilizaremos a biblioteca React, com a linguagem TypeScript.
-- Servidor: Utilizaremos o FireBase, um back end as a service do Google que fornece funcionalidades interessantes como Autenticação e Real Time Data Base, que serão vitais para entregarmos um produto final de qualidade e que segue todos os padroes de segurança da informação atuais do mercado. Ele fornece além de algumas funcionalidades básicas de servidor, um banco de dados não relacional, seguindo o padrão de documentos (semelhante ao mongo DB).
+- Servidor: Utilizaremos Node.js, mais especificamente Express.js, um framework para Node que fornece recursos mínimos para construção de servidores web. Além disso, utilizamos também o Sequelize, um ORM que auxilia na integração com o banco de dados relacional PostgreSQL (dialeto escolhido para armazenar os dados do sistema). A escolha dessas tecnologias foi baseada principalmente na experiência e familiaridade dos membros do grupo com as mesmas. Outro ponto é que são amplamente utilizadas no mercado, principalmente quando se trata de aplicações WEB.
 - Versionamento e CI/CD: GitHub + GitHub Actions.
