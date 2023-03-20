@@ -6,8 +6,6 @@ module.exports = {
   async register(req, res) {
     const { email, password } = req.body;
 
-    console.log(email, password)
-
     const crypto = require('crypto');
     const secret = process.env.PASSWORD_KEY;
     const hash = crypto.createHmac('SHA256', secret)
@@ -38,7 +36,7 @@ module.exports = {
 
     if (hash === current.password) {
       const token = jwt.sign({
-        userId: current.id, options: {
+        userId: current.userId, options: {
           expiresIn: 86400
         }
       }, process.env.SECRET);

@@ -9,7 +9,7 @@ export default function Register() {
   const { register, handleSubmit } = useForm<RegisterAttributes>();
 
   const handleRegister = async (newUser: RegisterAttributes) => {
-
+    console.log(newUser)
   };
 
   return (
