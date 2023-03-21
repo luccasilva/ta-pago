@@ -42,7 +42,7 @@ module.exports = {
           expiresIn: 86400
         }
       }, process.env.SECRET);
-      return res.json({ auth: true, token });
+      return res.json({ accessToken: token });
     } else {
       res.status(401).end();
     }
