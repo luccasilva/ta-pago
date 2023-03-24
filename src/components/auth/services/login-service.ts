@@ -6,6 +6,7 @@ import LoginResponse from "../../../libs/api/responses/auth/login-response";
 const login = async (loginAttributes: LoginAttributes): Promise<string> => {
   let loginResponse: AxiosResponse<LoginResponse>;
 
+  // eslint-disable-next-line no-useless-catch
   try {
     loginResponse = await api.auth.login(loginAttributes);
   } catch (error: unknown) {
