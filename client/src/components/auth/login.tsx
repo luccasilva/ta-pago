@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginAttributes } from "../../interfaces";
 import useAuthContext from "../../context/auth/context";
 import loginService from "./services/login-service";
+import { Button } from "@mui/material";
 
 export default function Login() {
   const { setAuth } = useAuthContext();
@@ -14,7 +15,7 @@ export default function Login() {
     try {
       const accessToken = await loginService.login(loginUser);
       console.log(accessToken);
-    } catch { }
+    } catch { /* empty */ }
   };
 
   return (
@@ -24,6 +25,7 @@ export default function Login() {
       <form onSubmit={handleSubmit(handleLogin)}>
         <input {...register("email", { required: true })} />
         <input {...register("password", { required: true })} />
+        <Button variant="contained">Contained</Button>
         <input type="submit" />
       </form>
     </div>
