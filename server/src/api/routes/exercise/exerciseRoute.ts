@@ -5,10 +5,10 @@ import { verifyJWT } from '../../adapters/auth/verifyJWT';
 
 const exerciseRoutes = Router();
 
-exerciseRoutes.get('/exercise', verifyJWT, getExerciseAdapter, getExercise);
+exerciseRoutes.post('/exercise/get', verifyJWT, getExerciseAdapter, getExercise);
 
 exerciseRoutes.post('/exercise', verifyJWT, createExerciseAdapter, createExercise);
 
-exerciseRoutes.delete('/exercise', verifyJWT, deleteExerciseAdapter, deleteExercise);
+exerciseRoutes.post('/exercise/delete', verifyJWT, deleteExerciseAdapter, deleteExercise);
 
 export default exerciseRoutes;
