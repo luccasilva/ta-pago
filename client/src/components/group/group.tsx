@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import { TopNav } from "../../shared";
-import { Button, TextField, Typography } from "@mui/material";
-import { toast } from 'react-toastify';
+import { Button, Typography } from "@mui/material";
 import useAuthContext from "../../context/auth/context";
 import groupService from "./services/group-service";
 import { GroupInterface } from "../../interfaces";

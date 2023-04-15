@@ -5,7 +5,6 @@ import { Logo } from "../../shared";
 import { Link } from "react-router-dom";
 import { GroupInterface } from "../../interfaces";
 import groupService from "../group/services/group-service";
-import Group from "../../libs/api/group";
 import GroupCard from "../group/group-card";
 
 export default function Home() {

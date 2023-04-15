@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Checkbox, Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from "@mui/material";
-import { ExerciseInterface, RecordInterface } from "../../interfaces";
+import { RecordInterface } from "../../interfaces";
 
 function not(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) === -1);

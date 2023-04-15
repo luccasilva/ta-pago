@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Card, CardContent, Typography } from "@mui/material";
-import { ExerciseInterface } from "../../interfaces";
 
 interface Props {
   onDeleteExercise: (exerciseId: string) => void;
