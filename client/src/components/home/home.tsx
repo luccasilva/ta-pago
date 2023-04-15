@@ -1,11 +1,25 @@
-import { Card, CardContent, Typography } from "@mui/material";
-import React from "react";
+import { Button, Card, CardContent, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import useAuthContext from "../../context/auth/context";
 import { Logo } from "../../shared";
 import { Link } from "react-router-dom";
+import { GroupInterface } from "../../interfaces";
+import groupService from "../group/services/group-service";
 
 export default function Home() {
   const { auth } = useAuthContext();
+
+  const [groups, setGroups] = useState<GroupInterface[]>([]);
+
+  const fetchGroups = async () => {
+    const groupsData = await groupService.get({ userId: auth.userId });
+    console.log(groupsData)
+    setGroups(groupsData);
+  };
+
+  useEffect(() => {
+    fetchGroups();
+  }, []);
 
   return (
     <div className="w-11/12 mx-auto mt-5">
@@ -51,6 +65,17 @@ export default function Home() {
           </CardContent>
         </Card>
       </Link>
+
+      <div className="flex justify-between mt-10">
+        <Typography variant="h5" component="div">
+          Meus Grupos
+        </Typography>
+        <div>
+          <Link to="/group/create">
+            <Button variant="outlined" >+</Button>
+          </Link>
+        </div>
+      </div>
 
     </div>
   );
