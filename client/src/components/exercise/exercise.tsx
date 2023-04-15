@@ -85,7 +85,7 @@ export default function Exercise() {
 
         <div>
           {exercises.map((exercise) => (
-            <ExerciseCard onDeleteExercise={handleDeleteExercise} exercise={exercise} />
+            <ExerciseCard key={exercise.exerciseId} onDeleteExercise={handleDeleteExercise} exercise={exercise} />
           ))}
         </div>
 

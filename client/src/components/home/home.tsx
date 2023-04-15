@@ -32,7 +32,7 @@ export default function Home() {
       </Link>
 
       <div className="mt-10" />
-      <Link to="/records">
+      <Link to="/record">
         <Card>
           <CardContent>
             <div className="flex">
