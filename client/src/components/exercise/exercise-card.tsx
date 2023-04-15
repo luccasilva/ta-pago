@@ -4,12 +4,13 @@ import { ExerciseInterface } from "../../interfaces";
 
 interface Props {
   onDeleteExercise: (exerciseId: string) => void;
-  exercise: ExerciseInterface;
+  exercise: any;
+  hideButton?: boolean;
 }
 
 export default function ExerciseCard(
   {
-    exercise, onDeleteExercise,
+    exercise, onDeleteExercise, hideButton
   }: Props,
 ) {
   const handleDelete = (exerciseId: string) => {
@@ -38,9 +39,12 @@ export default function ExerciseCard(
                 {exercise.breakTime}
               </Typography>
             </div>
-            <div>
-              <Button variant="outlined" onClick={() => handleDelete(exercise.exerciseId || "")}>X</Button>
-            </div>
+            {!hideButton ?
+              <div>
+                <Button variant="outlined" onClick={() => handleDelete(exercise.exerciseId || "")}>X</Button>
+              </div>
+              : null
+            }
           </div>
         </CardContent>
       </Card>

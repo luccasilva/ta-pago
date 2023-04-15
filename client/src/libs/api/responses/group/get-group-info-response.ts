@@ -1,8 +1,10 @@
 import { ParticipationInterface, UserInterface } from "../../../../interfaces";
 
-type GetGroupInfoResponse = {
-  user: Omit<UserInterface, 'password' | 'name' | 'email' | 'createdAt' | 'updatedAt'>,
+type GetGroupInfo = {
+  user: Omit<UserInterface, 'password' | 'email' | 'createdAt' | 'updatedAt'>,
   info: Omit<ParticipationInterface, 'createdAt' | 'updatedAt'>,
 };
 
-export default GetGroupInfoResponse;
+type GetGroupInfoResponse = GetGroupInfo[];
+
+export type { GetGroupInfo, GetGroupInfoResponse };

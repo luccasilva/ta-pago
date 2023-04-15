@@ -7,7 +7,7 @@ import JoinGroupResponse from "../../../libs/api/responses/group/join-group-resp
 import GetUserGroupsRequest from "../../../libs/api/requests/group/get-user-groups-request";
 import GetUserGroupsResponse from "../../../libs/api/responses/group/get-user-groups-response";
 import GetGroupInfoRequest from "../../../libs/api/requests/group/get-group-info-request";
-import GetGroupInfoResponse from "../../../libs/api/responses/group/get-group-info-response";
+import { GetGroupInfoResponse } from "../../../libs/api/responses/group/get-group-info-response";
 
 const register = async (registerAttributes: CreateGroupRequest): Promise<CreateGroupResponse> => {
   let registerResponse: AxiosResponse<CreateGroupResponse>;

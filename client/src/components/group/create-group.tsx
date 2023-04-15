@@ -15,8 +15,6 @@ export default function CreateGroup() {
   const [showGroupCode, setShowGroupCode] = useState<boolean>(false);
   const [groupCode, setGroupCode] = useState<string>("");
 
-
-
   const handleJoinGroup = async (group: JoinGroupRequest) => {
     try {
       await groupService.join(group);

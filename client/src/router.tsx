@@ -6,6 +6,9 @@ import Home from "./components/home/home";
 import Exercise from "./components/exercise/exercise";
 import Record from "./components/record/record";
 import CreateGroup from "./components/group/create-group";
+import Group from "./components/group/group";
+import JoinGroup from "./components/group/join-group";
+import Profile from "./components/group/profile";
 
 function Router() {
   return (
@@ -17,6 +20,10 @@ function Router() {
         <Route path={"/exercise"} key={"/exercise"} element={<Exercise />} />
         <Route path={"/record"} key={"/record"} element={<Record />} />
         <Route path={"/group/create"} key={"/group/create"} element={<CreateGroup />} />
+        <Route path="/group/:groupId" key="/group/:groupId" element={<Group />} />
+        <Route path="/group/join/:tag" key="/group/join/:tag" element={<JoinGroup />} />
+        <Route path="/profile/:userId/:name" key="/profile/:userId/:name" element={<Profile />} />
+
       </Routes>
     </BrowserRouter>
   );

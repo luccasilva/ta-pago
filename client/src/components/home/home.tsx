@@ -5,6 +5,8 @@ import { Logo } from "../../shared";
 import { Link } from "react-router-dom";
 import { GroupInterface } from "../../interfaces";
 import groupService from "../group/services/group-service";
+import Group from "../../libs/api/group";
+import GroupCard from "../group/group-card";
 
 export default function Home() {
   const { auth } = useAuthContext();
@@ -13,7 +15,6 @@ export default function Home() {
 
   const fetchGroups = async () => {
     const groupsData = await groupService.get({ userId: auth.userId });
-    console.log(groupsData)
     setGroups(groupsData);
   };
 
@@ -75,6 +76,13 @@ export default function Home() {
             <Button variant="outlined" >+</Button>
           </Link>
         </div>
+      </div>
+      <div>
+        {groups.map((group) => (
+          <Link to={`/group/${group.groupId}`} key={group.groupId}>
+            <GroupCard group={group} />
+          </Link>
+        ))}
       </div>
 
     </div>

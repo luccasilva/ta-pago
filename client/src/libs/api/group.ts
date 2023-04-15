@@ -4,7 +4,7 @@ import GetGroupInfoRequest from './requests/group/get-group-info-request';
 import GetUserGroupsRequest from './requests/group/get-user-groups-request';
 import JoinGroupRequest from './requests/group/join-group-request';
 import CreateGroupResponse from './responses/group/create-group-response';
-import GetGroupInfoResponse from './responses/group/get-group-info-response';
+import { GetGroupInfoResponse } from './responses/group/get-group-info-response';
 import GetUserGroupsResponse from './responses/group/get-user-groups-response';
 import JoinGroupResponse from './responses/group/join-group-response';
 
@@ -21,7 +21,7 @@ const get = async (request: GetUserGroupsRequest) => {
 }
 
 const info = async (request: GetGroupInfoRequest) => {
-  return axiosInstance.post<GetGroupInfoResponse>(`/record/delete`, request);
+  return axiosInstance.post<GetGroupInfoResponse>(`/group/info`, request);
 }
 
 export default {

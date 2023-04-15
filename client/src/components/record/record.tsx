@@ -8,7 +8,7 @@ import CreateRecordRequest from "../../libs/api/requests/record/create-record-re
 import RecordService from "./services/record-service";
 import { RecordInterface } from "../../interfaces";
 import useAuthContext from "../../context/auth/context";
-import RecordCard from "./record-card";
+import RecordMenu from "./record-menu";
 
 export default function Record() {
   const { register, handleSubmit } = useForm<CreateRecordRequest>();
@@ -78,7 +78,7 @@ export default function Record() {
 
         <div>
           {records.map((record) => (
-            <RecordCard key={record.recordId} onDeleteRecord={handleDeleteRecord} record={record} />
+            <RecordMenu key={record.recordId} onDeleteRecord={handleDeleteRecord} record={record} />
           ))}
         </div>
 
