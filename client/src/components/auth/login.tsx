@@ -6,6 +6,7 @@ import useAuthContext from "../../context/auth/context";
 import loginService from "./services/login-service";
 import { Button, TextField, Typography } from "@mui/material";
 import { Logo } from "../../shared";
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const { setAuth } = useAuthContext();
@@ -14,15 +15,19 @@ export default function Login() {
 
   const handleLogin = async (loginUser: LoginAttributes) => {
     try {
-      const accessToken = await loginService.login(loginUser);
-      console.log(accessToken);
-    } catch { /* empty */ }
+      const userInfo = await loginService.login(loginUser);
+      setAuth(userInfo);
+      navigate("/home");
+      toast.success("Logado com sucesso!");
+    } catch (error: any) {
+      toast.error(error.response?.data || "Error occurred during login.");
+    }
   };
 
   return (
     <div>
       <div className="flex flex-col w-full content-center">
-        <Logo />
+        <Logo width="150px" />
         <form className="flex flex-col w-9/12 m-auto" onSubmit={handleSubmit(handleLogin)}>
           <TextField {...register("email", { required: true })} id="email" label="Email" variant="standard" />
           <div className="mt-10" />

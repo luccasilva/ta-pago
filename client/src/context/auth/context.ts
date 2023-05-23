@@ -8,8 +8,10 @@ interface AuthContextInformation {
 
 export const AUTH_CONTEXT_DEFAULT_VALUE = {
   auth: {
-    isAutenticated: false,
-    uId: "",
+    name: "",
+    email: "",
+    accessToken: "",
+    userId: "",
   } as AuthInfo,
   setAuth: () => null,
 } as AuthContextInformation;

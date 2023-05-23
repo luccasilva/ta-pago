@@ -1,6 +1,8 @@
 interface AuthInfo {
-  isAutenticated: boolean;
-  uId: string;
+  userId: string;
+  name: string;
+  email: string;
+  accessToken: string;
 }
 
 export default AuthInfo;

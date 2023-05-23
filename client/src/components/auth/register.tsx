@@ -4,14 +4,22 @@ import { Link } from "react-router-dom";
 import { RegisterAttributes } from "../../interfaces";
 import { useNavigate } from "react-router-dom";
 import { Logo, TopNav } from "../../shared";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import registerService from "./services/register-service";
+import { toast } from 'react-toastify';
 
 export default function Register() {
-  useNavigate();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<RegisterAttributes>();
 
   const handleRegister = async (newUser: RegisterAttributes) => {
-    console.log(newUser)
+    try {
+      await registerService.register(newUser);
+      navigate("/");
+      toast.success("Cadastro realizado com sucesso!");
+    } catch (error: any) {
+      toast.error(error.response?.data || "Error occurred during registration.");
+    }
   };
 
   return (
@@ -20,7 +28,7 @@ export default function Register() {
         <TopNav />
       </Link>
       <div className="flex flex-col w-full content-center">
-        <Logo />
+        <Logo width="150px" />
         <form className="flex flex-col w-9/12 m-auto" onSubmit={handleSubmit(handleRegister)}>
           <TextField {...register("name", { required: true })} id="name" label="Nome" variant="standard" />
           <div className="mt-10" />

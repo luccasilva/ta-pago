@@ -3,7 +3,7 @@ import { LoginAttributes } from "../../../interfaces";
 import api from "../../../libs/api";
 import LoginResponse from "../../../libs/api/responses/auth/login-response";
 
-const login = async (loginAttributes: LoginAttributes): Promise<string> => {
+const login = async (loginAttributes: LoginAttributes): Promise<LoginResponse> => {
   let loginResponse: AxiosResponse<LoginResponse>;
 
   // eslint-disable-next-line no-useless-catch
@@ -16,7 +16,7 @@ const login = async (loginAttributes: LoginAttributes): Promise<string> => {
   const { accessToken } = loginResponse.data;
   localStorage.setItem('x-access-token', JSON.stringify(accessToken));
 
-  return accessToken;
+  return loginResponse.data;
 };
 
 const loginService = {
