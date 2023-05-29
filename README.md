@@ -6,6 +6,39 @@
 - Gabriel Sacoman Teixeira Silva - Scrum Master e Desenvolvedor front-end
 - Lucca Silva Medeiros - Product Owner e Desenvolvedor back-end
 
+# Arquitetura Hexagonal
+Uma Arquitetura Hexagonal divide as classes de um sistema em dois grupos principais: Classes de domínio e Classes relacionadas com infraestrutura, tecnologias e responsáveis pela integração com sistemas externos (tais como bancos de dados). Esse conceito foi guia de todo o desenvolvimento de ambos os projetos (client e server do Tá Pago!). 
+
+# Cliente
+No cliente temos a seguinte estrutura de pastas:
+
+- src
+- - components
+- - context
+- - interfaces
+- - libs
+- - shared
+
+A pasta components é responsável por armazenar todos os componentes que constroem o domínio da aplicação. Ela está subdividida entre as principais entidades do sistema: auth ( autenticação ), exercise, group, home e record. Cada subpasta armazena seus respectivos componentes como também os serviços responsáveis por cada entidade.
+
+A pasta interfaces diz respeito a tipagem geral das entidades do sistema. Ela possui  as interfaces que garantem a consistência dos dados em toda a aplicação.
+
+A pasta libs, separa todo o domínio de negócio das classes relacionadas com a infra estrutura. É nela que está configurada toda a comunicação com o back-end e também toda tipagem de portas de entrada e saída da aplicação. Além disso, nela se encontra também a configuração do axios, lib responsável por fazer a comunicação de fato com o server. Todas funcionalidades que comunicam com o serviço externo estão presentes na pasta libs, e elas são somente invocadas nos respectivos serviços de cada entidade, garantindo os princípios de uma arquitetura hexagonal.
+
+# Servidor
+Já no server temos:
+
+- src
+- - api
+- - database
+- - interfaces
+
+A pasta interfaces diz respeito a tipagem geral das entidades do sistema. Ela possui  as interfaces que garantem a consistência dos dados em toda a aplicação, tal qual o front-end
+
+Já a pasta database contém toda a configuração do banco de dados da aplicação. Ela separa toda infra estrutura do banco do restante do sistema e nela constam também as migrações que geram as tabelas do banco. Utilizamos uma ORM ( Sequelize ) para modularizar ainda mais a aplicação da infra no sistema, deixando assim qualquer mudança de fácil adaptação, uma vez que toda vez que o banco é invocado é através do ORM e não diretamente.
+
+Já a pasta api é onde de fato está todo o domínio do server. Ela está subdividida em: adapters ( que são as funções de cada entidade que recebem chamadas de métodos vindos de fora do sistema e encaminham essas chamadas para métodos adequados das portas de entrada ). Ports ( são as interfaces de entrada e saída do sistema, tipando toda requisição e resposta do server ). Routes ( definição das rotas do back-end, também separadas por entidades ). E por último o controller, que é o domínio do sistema, constando todas as classes de regra de negócio e que invocam o banco de dados somente via ORM, garantindo assim a separação com a infra e os conceitos da arquitetura hexagonal.
+
 # Explicação do sistema
 Atividades físicas estão cada vez mais presentes na vida das pessoas. Exercícios como musculação, cross-fit, caminhadas… vem ganhando espaço por trazerem inúmeros benéficos à saúde dos praticantes. Além de melhorar a aptidão física, o exercício físico regular também pode melhorar a capacidade cognitiva e reduzir os níveis de ansiedade e estresse em geral. Os exercícios ajudam a melhorar a autoestima, a imagem corporal, a cognição e a função social de pacientes em risco de saúde mental. Porém é difícil ter um controle e a motivação constante para manter uma rotina saudável todos os dias. 
 
