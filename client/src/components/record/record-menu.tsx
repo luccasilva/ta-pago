@@ -34,7 +34,7 @@ export default function RecordMenu(
     const exercisesData = await exerciseService.get({ userId: auth.userId });
     const exercisesInRecord = record?.exercises?.map(exercise => exercise.exerciseId);
     const filteredExercises = exercisesInRecord
-      ? exercisesData.filter(exercise => !exercisesInRecord.includes(exercise.exerciseId))
+      ? exercisesData.filter(exercise => exercise.recordId === null)
       : exercisesData;
     setLeft(filteredExercises);
   };
