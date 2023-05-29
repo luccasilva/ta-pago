@@ -6,6 +6,8 @@ import GetRecordRequest from "../../../libs/api/requests/record/get-record-reque
 import GetRecordResponse from "../../../libs/api/responses/record/get-record-response";
 import DeleteRecordRequest from "../../../libs/api/requests/record/delete-record-request";
 import DeleteRecordResponse from "../../../libs/api/responses/record/delete-record-response";
+import PutRecordRequest from "../../../libs/api/requests/record/put-record-request";
+import PutRecordResponse from "../../../libs/api/responses/record/put-record-response";
 
 const register = async (registerAttributes: CreateRecordRequest): Promise<CreateRecordResponse> => {
   let registerResponse: AxiosResponse<CreateRecordResponse>;
@@ -46,10 +48,24 @@ const delete_ = async (deleteAttributes: DeleteRecordRequest): Promise<DeleteRec
   return deleteResponse.data;
 };
 
+const put = async (putAttributes: PutRecordRequest): Promise<PutRecordResponse> => {
+  let putResponse: AxiosResponse<PutRecordResponse>;
+
+  // eslint-disable-next-line no-useless-catch
+  try {
+    putResponse = await api.record.put(putAttributes);
+  } catch (error: unknown) {
+    throw (error);
+  }
+
+  return putResponse.data;
+};
+
 const recordService = {
   register,
   get,
   delete_,
+  put,
 };
 
 export default recordService;

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Checkbox, Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from "@mui/material";
-import { RecordInterface } from "../../interfaces";
+import { ExerciseInterface, RecordInterface } from "../../interfaces";
+import exerciseService from "../exercise/services/exercise-service";
+import useAuthContext from "../../context/auth/context";
+import recordService from "./services/record-service";
+import { toast } from "react-toastify";
 
 function not(a: readonly number[], b: readonly number[]) {
   return a.filter((value) => b.indexOf(value) === -1);
@@ -20,18 +24,47 @@ export default function RecordMenu(
     record, onDeleteRecord,
   }: Props,
 ) {
+  const { auth } = useAuthContext();
+
+  const [checked, setChecked] = React.useState<any[]>([]);
+  const [left, setLeft] = React.useState<any[]>([]);
+  const [right, setRight] = React.useState<any[]>(record.exercises || []);
+
+  const fetchExercises = async () => {
+    const exercisesData = await exerciseService.get({ userId: auth.userId });
+    const exercisesInRecord = record?.exercises?.map(exercise => exercise.exerciseId);
+    const filteredExercises = exercisesInRecord
+      ? exercisesData.filter(exercise => !exercisesInRecord.includes(exercise.exerciseId))
+      : exercisesData;
+    setLeft(filteredExercises);
+  };
+
+  useEffect(() => {
+    fetchExercises();
+  }, []);
+
   const handleDelete = (recordId: string) => {
     onDeleteRecord(recordId);
   };
 
-  const [checked, setChecked] = React.useState<readonly number[]>([]);
-  const [left, setLeft] = React.useState<readonly number[]>([0, 1]);
-  const [right, setRight] = React.useState<readonly number[]>([]);
+  const handlePut = async () => {
+    const idArray: string[] = right.map(object => object.exerciseId);
+    try {
+      await recordService.put({ recordId: record.recordId, exercises: idArray });
+      toast.success("Ficha atualizada com sucesso!");
+    }
+    catch (error: any) {
+      toast.error(error.response?.data || "Error occurred during update record.");
+    }
+    finally {
+      setChecked([]);
+    }
+  };
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = (value: number) => () => {
+  const handleToggle = (value: ExerciseInterface) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -69,12 +102,12 @@ export default function RecordMenu(
   const customList = (exercises: readonly any[]) => (
     <Paper sx={{ width: 205, height: 230, overflow: 'auto' }}>
       <List dense component="div" role="list">
-        {exercises.map((value: any) => {
+        {exercises.map((value: ExerciseInterface) => {
           const labelId = `transfer-list-item-${value.exerciseId}-label`;
 
           return (
             <ListItem
-              key={value}
+              key={value.exerciseId}
               style={{ padding: 0, margin: 0 }}
               role="listitem"
               button
@@ -82,6 +115,7 @@ export default function RecordMenu(
             >
               <ListItemIcon>
                 <Checkbox
+                  key={value.exerciseId}
                   style={{ padding: 0, marginLeft: 5 }}
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
@@ -92,7 +126,7 @@ export default function RecordMenu(
                 />
               </ListItemIcon>
               <ListItemText style={{ padding: 0, margin: 0 }}
-                id={labelId} primary={`Ex ${value}`} />
+                id={labelId} primary={`${value.name}`} />
             </ListItem>
           );
         })}
@@ -112,8 +146,13 @@ export default function RecordMenu(
             {record.description}
           </Typography>
         </div>
-        <div>
-          <Button variant="outlined" onClick={() => handleDelete(record.recordId || "")}>X</Button>
+        <div className="flex h-20">
+          <div>
+            <Button variant="contained" onClick={() => handlePut()}>Salvar</Button>
+          </div>
+          <div className="ml-5">
+            <Button variant="outlined" onClick={() => handleDelete(record.recordId || "")}>Deletar</Button>
+          </div>
         </div>
       </div>
       <Grid container spacing={2} justifyContent="left" alignItems="center">

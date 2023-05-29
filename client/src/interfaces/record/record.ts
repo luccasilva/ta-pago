@@ -1,5 +1,5 @@
 interface ExerciseInRecord {
-  exerciseId?: string;
+  exerciseId: string;
   name: string;
   weight: string;
   repetitions: string;

@@ -66,7 +66,7 @@ export default function Record() {
         </Typography>
         <div className="mb-10" />
 
-        <div className="flex flex-col w-full content-center mb-10">
+        <div className="flex flex-col w-full content-center mb-20">
           <form className="flex flex-col w-9/12 m-auto" onSubmit={handleSubmit(handleRegisterRecord)}>
             <TextField {...register("name", { required: true })} id="name" label="Nome" variant="standard" />
             <div className="mt-5" />

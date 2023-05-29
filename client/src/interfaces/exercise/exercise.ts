@@ -1,5 +1,5 @@
 export default interface ExerciseInterface {
-  exerciseId?: string;
+  exerciseId: string;
   userId: string;
   recordId: string | null;
   name: string;
