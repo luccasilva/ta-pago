@@ -46,8 +46,6 @@ const getGroupInfo = async (req: Request, res: Response): Promise<Response | voi
     return res.status(400).json({ error: 'Invalid auth params' }).end();
   }
 
-  console.log(req.body.groupId)
-
   const participations = await Participation.findAll({
     where: {
       groupId: req.body.groupId,

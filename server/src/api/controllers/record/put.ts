@@ -8,6 +8,16 @@ require('dotenv').config();
 
 async function updateRecordExercises(userId: string, recordId: string, exercises: string[]) {
   try {
+    const recordCurrentExercises = await Exercise.findAll({
+      where: {
+        recordId: recordId,
+      },
+    });
+
+    await Promise.all(recordCurrentExercises.map((exercise) => {
+      return exercise.update({ recordId: null });
+    }));
+
     const onUpdateExercises = await Exercise.findAll({
       where: {
         userId: userId,
