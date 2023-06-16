@@ -15,11 +15,11 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
+      - working-directory: ./server
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - working-directory: ./server
       - run: npm ci
       - run: npm test
