@@ -6,7 +6,8 @@
 .env
 
 # testing
-/coverage
+/server/coverage
+/client/coverage
 
 # production
 /build
