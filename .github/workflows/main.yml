@@ -14,13 +14,15 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
+    defaults:
+      run:
+        working-directory: ./server
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Change directory to 'server'
-        run: cd server
       - run: npm ci
       - run: npm test
