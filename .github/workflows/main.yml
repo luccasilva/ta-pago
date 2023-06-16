@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-        working-directory: ./server
+      - name: Change directory to 'server'
+        run: cd server
       - run: npm ci
       - run: npm test
