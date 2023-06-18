@@ -3,7 +3,7 @@
 
 describe("Login Component", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000"); // Assuming the login component is rendered at the "/login" route
+    cy.visit("http://localhost:3000");
   });
 
   it("should display the login form", () => {
