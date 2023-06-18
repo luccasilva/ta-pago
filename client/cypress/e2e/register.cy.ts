@@ -1,6 +1,3 @@
-// register.spec.ts
-/// <reference types="Cypress" />
-
 describe("Register Component", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/register");
