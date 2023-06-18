@@ -31,6 +31,21 @@ describe('CreateRecordRequest', () => {
     expect(typeof create.name).toBe('string');
     expect(typeof create.description).toBe('string');
   });
-  
 
+  it('should have a non-empty name value', () => {
+    expect(create.name.length).toBeGreaterThan(0);
+  });
+
+  it('should have a non-empty description value', () => {
+    expect(create.description.length).toBeGreaterThan(0);
+  });
+  
+  it('should not have additional properties', () => {
+    const additionalProperties = Object.keys(create).filter(
+      (key) => key !== 'name' && key !== 'description'
+    );
+
+    expect(additionalProperties.length).toBe(0);
+  });
+  
 });
