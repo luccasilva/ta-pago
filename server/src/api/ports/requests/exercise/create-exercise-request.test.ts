@@ -31,4 +31,29 @@ describe('CreateExerciseRequest', () => {
   it('should have an breakTime property', () => {
     expect(create.breakTime).toBe('1');
   });
+
+  it('should not have additional properties', () => {
+    const additionalProperties = Object.keys(create).filter(
+      (key) =>
+        key !== 'name' &&
+        key !== 'weight' &&
+        key !== 'repetitions' &&
+        key !== 'breakTime'
+    );
+
+    expect(additionalProperties.length).toBe(0);
+  });
+
+  it('should have a numeric weight value', () => {
+    expect(Number(create.weight)).not.toBeNaN();
+  });
+
+  it('should have a numeric repetitions value', () => {
+    expect(Number(create.repetitions)).not.toBeNaN();
+  });
+
+  it('should have a numeric breakTime value', () => {
+    expect(Number(create.breakTime)).not.toBeNaN();
+  });
+
 });

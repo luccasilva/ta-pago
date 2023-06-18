@@ -21,4 +21,16 @@ describe('CreateRecordRequest', () => {
   it('should have an description property', () => {
     expect(create.description).toBe('description');
   });
+
+  it('should have defined name and description properties', () => {
+    expect(create.name).toBeDefined();
+    expect(create.description).toBeDefined();
+  });
+
+  it('should have name and description properties of type string', () => {
+    expect(typeof create.name).toBe('string');
+    expect(typeof create.description).toBe('string');
+  });
+  
+
 });

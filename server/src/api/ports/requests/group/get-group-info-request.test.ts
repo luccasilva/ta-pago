@@ -9,11 +9,17 @@ describe('CreateExerciseRequest', () => {
     };
   });
 
-  it('should be able to create an Group', () => {
+  it('should be able to create a GetGroupInfoRequest', () => {
     expect(get).toBeDefined();
   });
 
-  it('should have an groupId property', () => {
+  it('should have a groupId property', () => {
     expect(get.groupId).toBe('1');
   });
+
+  it('should not have extra properties', () => {
+    const keys = Object.keys(get);
+    expect(keys).toEqual(['groupId']);
+  });  
+  
 });
