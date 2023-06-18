@@ -3,7 +3,7 @@
 
 describe("Login Component", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000"); // Assuming the login component is rendered at the "/login" route
+    cy.visit("http://localhost:3000");
   });
 
   it("should display the login form", () => {
@@ -17,12 +17,12 @@ describe("Login Component", () => {
     cy.get('input[name="email"]').type("invalid@example.com");
     cy.get('input[name="password"]').type("wrongpassword");
     cy.get("form").submit();
-    cy.contains("Error occurred during login.").should("exist");
+    cy.contains("User does not exist!").should("exist");
   });
 
   it("should redirect to home page after successful login", () => {
-    cy.get('input[name="email"]').type("valid@example.com");
-    cy.get('input[name="password"]').type("password123");
+    cy.get('input[name="email"]').type("novo_caio@gmail.com");
+    cy.get('input[name="password"]').type("Teste@1234");
     cy.get("form").submit();
     cy.url().should("include", "/home");
     cy.contains("Logado com sucesso!").should("exist");
