@@ -8,8 +8,6 @@ describe("Record Page", () => {
   });
 
   it("should registers a new record", () => {
-    cy.intercept("POST", "/api/record").as("registerRecord");
-
     cy.get("input[name='name']").type("New Record Name");
     cy.get("input[name='description']").type("New Record Description");
 
@@ -19,8 +17,6 @@ describe("Record Page", () => {
   });
 
   it("should deletes a record", () => {
-    cy.intercept("DELETE", "/api/record").as("deleteRecord");
-
     cy.get("input[name='name']").type("New Record Name");
     cy.get("input[name='description']").type("New Record Description");
 

@@ -29,7 +29,7 @@ export default function Group() {
       name: current?.name || "",
       description: current?.description || "",
       tag: current?.tag || "",
-    }
+    };
 
     setCurrentGroup(currentInterface);
   };
@@ -46,7 +46,7 @@ export default function Group() {
           <TopNav />
         </Link>
         <div className="mt-6">
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" component="div" id="group-name">
             {currentGroup?.name}
           </Typography>
           <div className="mt-3" />
@@ -63,14 +63,14 @@ export default function Group() {
               </Link>
             </div>
           </div>
-          {groupInfo && groupInfo.map((info) => (
-            <Link to={`/profile/${info.user.userId}/${info.user.name}`}>
-              <ParticipantCard key={info.info.participationId} group={info} />
-            </Link>
-          ))}
+          {groupInfo &&
+            groupInfo.map((info) => (
+              <Link to={`/profile/${info.user.userId}/${info.user.name}`}>
+                <ParticipantCard key={info.info.participationId} group={info} />
+              </Link>
+            ))}
         </div>
       </div>
-
-    </div >
+    </div>
   );
 }
