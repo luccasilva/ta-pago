@@ -7,7 +7,7 @@ describe("Record Page", () => {
     cy.get("a[href='/record']").click();
   });
 
-  it("registers a new record", () => {
+  it("should registers a new record", () => {
     cy.intercept("POST", "/api/record").as("registerRecord");
 
     cy.get("input[name='name']").type("New Record Name");
@@ -18,7 +18,7 @@ describe("Record Page", () => {
     cy.contains("Ficha cadastrada com sucesso!").should("exist");
   });
 
-  it("deletes a record", () => {
+  it("should deletes a record", () => {
     cy.intercept("DELETE", "/api/record").as("deleteRecord");
 
     cy.get("input[name='name']").type("New Record Name");
