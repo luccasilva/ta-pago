@@ -24,4 +24,28 @@ describe("Home Page", () => {
     cy.get("button").contains("+").click();
     cy.url().should("include", "/group/create");
   });
+
+  it("should navigate to the user group page", () => {
+    cy.get("button").contains("+").click();
+
+    cy.get("input[name='name']").type("New Group Name");
+    cy.get("input[name='description']").type("New Group Description");
+
+    cy.get("button").contains("Criar").click();
+
+    cy.get("input[name='group-code']")
+      .invoke("val")
+      .then((value) => {
+        const groupValue = value;
+        cy.get("input[name='tag']").type(groupValue);
+        cy.get("button").contains("Entrar").click();
+      });
+
+    cy.contains("Você entrou no grupo!").should("exist");
+
+    cy.get("a[href='/home']").click();
+
+    cy.get('a[href^="/group/"]').eq(1).click();
+    cy.get("#group-name").should("contain.text", "New Group Name");
+  });
 });

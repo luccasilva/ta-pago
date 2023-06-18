@@ -8,8 +8,6 @@ describe("CreateGroup Page", () => {
   });
 
   it("should create a new group", () => {
-    cy.intercept("POST", "/api/groups").as("createGroup");
-
     cy.get("input[name='name']").type("New Group Name");
     cy.get("input[name='description']").type("New Group Description");
 
@@ -19,8 +17,6 @@ describe("CreateGroup Page", () => {
   });
 
   it("should join a group", () => {
-    cy.intercept("POST", "/api/groups").as("createGroup");
-
     cy.get("input[name='name']").type("New Group Name");
     cy.get("input[name='description']").type("New Group Description");
 
